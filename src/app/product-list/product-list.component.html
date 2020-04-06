@@ -1,6 +1,6 @@
 <h1>Products</h1>
 
-<div *ngFor="let product of products; index as productId">
+<div *ngFor="let product of products; index as productId" class="product-container">
   <h3>
     <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
       {{product.name}}
@@ -10,9 +10,11 @@
       Descrtiption: {{product.description}}
   </p>
 
-  <button [title]="product.name" (click)="share()">
-    Share
-  </button>
+  <div [@sharing]="product.isShared ? 'share' : 'not-share'" class="share-product-button">
+    <button [title]="product.name" (click)="share(product)">
+      Share
+    </button>
+  </div>
 
 <app-product-alerts
   [product]="product">

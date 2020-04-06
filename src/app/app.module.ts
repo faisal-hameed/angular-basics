@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -14,11 +15,12 @@ import { CartComponent } from './cart/cart.component';
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },
-      { path: 'cart', component: CartComponent},
+      { path: 'cart', component: CartComponent },
     ])
   ],
   declarations: [
@@ -27,9 +29,9 @@ import { CartComponent } from './cart/cart.component';
     ProductListComponent,
     ProductAlertsComponent,
     ProductDetailsComponent,
-    CartComponent
+    CartComponent,
   ],
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   providers: [CartService]
 })
 export class AppModule { }
