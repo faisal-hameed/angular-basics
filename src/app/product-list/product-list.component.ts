@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { products } from '../products';
 import { trigger, state, style, transition, animate, AnimationEvent, useAnimation } from '@angular/animations';
-import { transAnimation } from '../animations';
+import { transAnimation, slideInAnimation } from '../animations';
 
 @Component({
   selector: 'app-product-list',
@@ -49,6 +49,7 @@ import { transAnimation } from '../animations';
         })
       ])
     ]),
+    slideInAnimation,
   ],
 })
 export class ProductListComponent {
