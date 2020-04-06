@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { products } from '../products';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, state, style, transition, animate, AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: 'app-product-list',
@@ -12,19 +12,28 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       // ...
       state('share', style({
         // height: '200px',
-        opacity: 0.3,
+        opacity: 1,
         backgroundColor: 'green'
       })),
       state('not-share', style({
         // height: '100px',
         opacity: 1,
-        backgroundColor: 'blue'
+        backgroundColor: 'orange'
       })),
-      transition('share => not-share', [
-        animate('1s')
-      ]),
+      // transition('share => not-share', [
+      //   animate('4s')
+      // ]),
       transition('not-share => share', [
-        animate('0.5s')
+        animate('3s')
+      ]),
+      transition('share => not-share', [
+        animate('1s',
+          style({
+            opacity: '*',
+            backgroundColor: 'red',
+            height: '200px',
+          }),
+        ),
       ]),
     ]),
   ],
@@ -32,6 +41,10 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class ProductListComponent {
   products = products;
   isShared = false;
+
+  onAnimationEvent(event: AnimationEvent) {
+    console.log(`Animation ${event.triggerName} ${event.phaseName} : from ${event.fromState} to ${event.toState}`);
+  }
 
   share(product) {
     product.isShared = !product.isShared;

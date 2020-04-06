@@ -4,21 +4,21 @@
   <h3>
     <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
       {{product.name}}
-    </a>    
+    </a>
   </h3>
   <p *ngIf="product.description">
-      Descrtiption: {{product.description}}
+    Descrtiption: {{product.description}}
   </p>
 
-  <div [@sharing]="product.isShared ? 'share' : 'not-share'" class="share-product-button">
+  <div [@sharing]="product.isShared ? 'share' : 'not-share'" (@sharing.start)=onAnimationEvent($event)
+    (@sharing.done)=onAnimationEvent($event) class="share-product-button">
     <button [title]="product.name" (click)="share(product)">
       Share
     </button>
   </div>
 
-<app-product-alerts
-  [product]="product">
-</app-product-alerts>
+  <app-product-alerts [product]="product">
+  </app-product-alerts>
 
 </div>
 
