@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 import { products } from '../products';
-import { trigger, state, style, transition, animate, AnimationEvent } from '@angular/animations';
+import { trigger, state, style, transition, animate, AnimationEvent, useAnimation } from '@angular/animations';
+import { transAnimation } from '../animations';
 
 @Component({
   selector: 'app-product-list',
@@ -35,6 +36,18 @@ import { trigger, state, style, transition, animate, AnimationEvent } from '@ang
           }),
         ),
       ]),
+    ]),
+    trigger('notify', [
+      transition('false <=> true', [
+        useAnimation(transAnimation, {
+          params: {
+            height: 0,
+            opacity: 1,
+            backgroundColor: 'red',
+            time: '10s'
+          }
+        })
+      ])
     ]),
   ],
 })

@@ -11,7 +11,8 @@
   </p>
 
   <div [@sharing]="product.isShared ? 'share' : 'not-share'" (@sharing.start)=onAnimationEvent($event)
-    (@sharing.done)=onAnimationEvent($event) class="share-product-button">
+    (@sharing.done)=onAnimationEvent($event) [@notify]="product.isShared" (@notify.start)=onAnimationEvent($event)
+    (@notify.done)=onAnimationEvent($event) class="share-product-button">
     <button [title]="product.name" (click)="share(product)">
       Share
     </button>
